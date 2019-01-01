@@ -13,6 +13,8 @@ public class Person {
     private String firstName;
     private String lastName;
     private String city;
+    private String state;
+    private Integer zipCode;
     private Integer milesWillingToDrive;
     private String about;
     private String photo;
