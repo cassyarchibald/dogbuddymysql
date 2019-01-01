@@ -1,6 +1,5 @@
 package com.dogbuddyapi.dogbuddy.entities;
 
-import sun.jvm.hotspot.gc.shared.Generation;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
