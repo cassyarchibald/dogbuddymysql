@@ -1,15 +1,16 @@
 package com.dogbuddyapi.dogbuddy.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class Dog {
     @Id
+    @Column(nullable = false, updatable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    // must at least provide a name
+    @Column(nullable = false)
     private String name;
     private Integer age;
     private Size size;
@@ -18,8 +19,10 @@ public class Dog {
     private String photo;
     private String breed;
     private String preferredPlayBuddy;
+    // dog has an owner
+    // mapping is happening from dog to person
+    @OneToMany(mappedBy = "dog", fetch = FetchType.EAGER)
     private Person person;
-
 
     public Person getPerson() {
         return person;
@@ -28,7 +31,6 @@ public class Dog {
     public void setPerson(Person person) {
         this.person = person;
     }
-
 
 
     public Long getId() {
@@ -101,6 +103,16 @@ public class Dog {
 
     public void setPreferredPlayBuddy(String preferredPlayBuddy) {
         this.preferredPlayBuddy = preferredPlayBuddy;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return Objects.equals(id, ((Dog) obj).id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 
 }

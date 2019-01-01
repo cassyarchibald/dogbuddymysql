@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Objects;
 
 @Entity
 public class Message {
@@ -15,6 +16,8 @@ public class Message {
     private String from;
     private String subject;
     private String messageContent;
+    // Message belongs to a person
+
     private Person person;
 
 
@@ -66,6 +69,16 @@ public class Message {
 
     public void setMessageContent(String messageContent) {
         this.messageContent = messageContent;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return Objects.equals(id, ((Message) obj).id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 
 }

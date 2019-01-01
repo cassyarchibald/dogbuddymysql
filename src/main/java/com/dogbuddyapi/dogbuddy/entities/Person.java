@@ -1,9 +1,7 @@
 package com.dogbuddyapi.dogbuddy.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -11,17 +9,44 @@ public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    // must provide name, city, state, zip, about
+    @Column(nullable = false)
     private String firstName;
+    @Column(nullable = false)
     private String lastName;
+    @Column(nullable = false)
     private String city;
+    @Column(nullable = false)
     private String state;
+    @Column(nullable = false)
     private Integer zipCode;
     private Integer milesWillingToDrive;
+    @Column(nullable = false)
     private String about;
     private String photo;
     private Gender gender;
+    @ManyToOne
+    @JoinColumn(referencedColumnName = "ID")
+    // Person can have many dogs
+    // do I need a join column here?
     private Set<Dog> dogs;
+    // person can have many events
+    @ManyToOne
     private Set<Event> events;
+    // person can have many messages
+    @ManyToOne
+    @JoinColumn(referencedColumnName = "ID")
+    private Set<Message> messages;
+
+
+    public Set<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(Set<Message> messages) {
+        this.messages = messages;
+    }
+
 
 
     public Set<Event> getEvents() {
@@ -123,6 +148,13 @@ public class Person {
         this.gender = gender;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        return Objects.equals(id, ((Person) obj).id);
+    }
 
-
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
 }

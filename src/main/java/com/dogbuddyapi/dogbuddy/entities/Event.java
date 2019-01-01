@@ -1,11 +1,9 @@
 package com.dogbuddyapi.dogbuddy.entities;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -13,15 +11,30 @@ public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    // must provide all fields
+    @Column(nullable = false)
     private String title;
+    @Column(nullable = false)
     private String description;
+    @Column(nullable = false)
     private String hostName;
+    @Column(nullable = false)
     private String city;
+    @Column(nullable = false)
     private String state;
+    @Column(nullable = false)
     private Integer zipCode;
+    @Column(nullable = false)
     private Date date;
+    @Column(nullable = false)
     private Date time;
+    // organizer can create many events, delete events if host is deleted
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Person host;
+    // event can have many participants,
+    // if association is gone, remove the event
+    // map from event to person
+    @OneToMany(mappedBy = "event")
     private Set<Person> attendees;
 
     public Date getDate() {
@@ -115,7 +128,15 @@ public class Event {
         this.zipCode = zipCode;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        return Objects.equals(id, ((Event) obj).id);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
 
 
 }
