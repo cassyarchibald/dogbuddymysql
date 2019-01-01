@@ -2,6 +2,7 @@ package com.dogbuddyapi.dogbuddy.entities;
 
 
 import javax.persistence.*;
+import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.Objects;
 import java.util.Set;
@@ -27,7 +28,27 @@ public class Event {
     @Column(nullable = false)
     private Date date;
     @Column(nullable = false)
-    private Date time;
+    private ZonedDateTime startTime;
+    @Column(nullable = false)
+    private ZonedDateTime endTime;
+
+    public ZonedDateTime getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(ZonedDateTime startTime) {
+        this.startTime = startTime;
+    }
+
+    public ZonedDateTime getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(ZonedDateTime endTime) {
+        this.endTime = endTime;
+    }
+
+
     // organizer can create many events, delete events if host is deleted
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Person host;
@@ -43,14 +64,6 @@ public class Event {
 
     public void setDate(Date date) {
         this.date = date;
-    }
-
-    public Date getTime() {
-        return time;
-    }
-
-    public void setTime(Date time) {
-        this.time = time;
     }
 
 
