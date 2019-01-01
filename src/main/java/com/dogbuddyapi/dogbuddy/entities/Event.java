@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Date;
+import java.util.Set;
 
 @Entity
 public class Event {
@@ -17,6 +19,44 @@ public class Event {
     private String city;
     private String state;
     private Integer zipCode;
+    private Date date;
+    private Date time;
+    private Person host;
+    private Set<Person> attendees;
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
+    }
+
+
+    public Person getHost() {
+        return host;
+    }
+
+    public void setHost(Person host) {
+        this.host = host;
+    }
+
+    public Set<Person> getAttendees() {
+        return attendees;
+    }
+
+    public void setAttendees(Set<Person> attendees) {
+        this.attendees = attendees;
+    }
+
 
 
     public Long getId() {

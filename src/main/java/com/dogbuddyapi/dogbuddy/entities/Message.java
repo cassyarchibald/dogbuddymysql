@@ -15,6 +15,18 @@ public class Message {
     private String from;
     private String subject;
     private String messageContent;
+    private Person person;
+
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
+
 
     public Long getId() {
         return id;

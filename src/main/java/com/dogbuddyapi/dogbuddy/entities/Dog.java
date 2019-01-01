@@ -18,6 +18,17 @@ public class Dog {
     private String photo;
     private String breed;
     private String preferredPlayBuddy;
+    private Person person;
+
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
 
 
     public Long getId() {
