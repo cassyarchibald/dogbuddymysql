@@ -1,5 +1,7 @@
 package com.dogbuddyapi.dogbuddy.entities;
 
+import org.springframework.data.rest.core.annotation.RestResource;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -21,9 +23,13 @@ public class Dog {
     private String preferredPlayBuddy;
     // dog has an owner
     // mapping is happening from dog to person
-    @OneToMany(mappedBy = "dog", fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "person_id")
     private Person person;
-
+    //@ManyToOne
+    //@JoinColumn
+    // empty constructor for hibernate
+    public Dog(){}
     public Person getPerson() {
         return person;
     }

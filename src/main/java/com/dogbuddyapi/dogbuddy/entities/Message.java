@@ -1,34 +1,21 @@
 package com.dogbuddyapi.dogbuddy.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.util.Objects;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+
+import javax.persistence.*;
+
 
 @Entity
 public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    private String to;
-    private String from;
-    private String subject;
-    private String messageContent;
-    // Message belongs to a person
-
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "person_id")
     private Person person;
-
-
-    public Person getPerson() {
-        return person;
-    }
-
-    public void setPerson(Person person) {
-        this.person = person;
-    }
-
+    private String to;
+    private String subject;
+    private String details;
 
 
     public Long getId() {
@@ -39,20 +26,20 @@ public class Message {
         this.id = id;
     }
 
+    public Person getFrom() {
+        return person;
+    }
+
+    public void setFrom(Person from) {
+        this.person = from;
+    }
+
     public String getTo() {
         return to;
     }
 
     public void setTo(String to) {
         this.to = to;
-    }
-
-    public String getFrom() {
-        return from;
-    }
-
-    public void setFrom(String from) {
-        this.from = from;
     }
 
     public String getSubject() {
@@ -63,22 +50,13 @@ public class Message {
         this.subject = subject;
     }
 
-    public String getMessageContent() {
-        return messageContent;
+    public String getDetails() {
+        return details;
     }
 
-    public void setMessageContent(String messageContent) {
-        this.messageContent = messageContent;
+    public void setDetails(String details) {
+        this.details = details;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        return Objects.equals(id, ((Message) obj).id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
-    }
 
 }

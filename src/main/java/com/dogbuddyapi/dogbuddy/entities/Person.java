@@ -1,6 +1,7 @@
 package com.dogbuddyapi.dogbuddy.entities;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -10,34 +11,23 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     // must provide name, city, state, zip, about
-    @Column(nullable = false)
     private String firstName;
-    @Column(nullable = false)
     private String lastName;
-    @Column(nullable = false)
     private String city;
-    @Column(nullable = false)
     private String state;
-    @Column(nullable = false)
     private Integer zipCode;
     private Integer milesWillingToDrive;
-    @Column(nullable = false)
     private String about;
     private String photo;
     private Gender gender;
-    @ManyToOne
-    @JoinColumn(referencedColumnName = "ID")
-    // Person can have many dogs
-    // do I need a join column here?
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Dog> dogs;
-    // person can have many events
-    @ManyToOne
-    private Set<Event> events;
-    // person can have many messages
-    @ManyToOne
-    @JoinColumn(referencedColumnName = "ID")
-    private Set<Message> messages;
 
+    // person can have many events
+    // event can have many persons
+    // person can have many messages
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Message> messages;
 
     public Set<Message> getMessages() {
         return messages;
@@ -49,14 +39,8 @@ public class Person {
 
 
 
-    public Set<Event> getEvents() {
-        return events;
-    }
-
-    public void setEvents(Set<Event> events) {
-        this.events = events;
-    }
-
+    public Person(){}
+    //@OneToMany(cascade=CascadeType.ALL, mappedBy="person")
 
     public String getState() {
         return state;
@@ -74,6 +58,7 @@ public class Person {
         this.zipCode = zipCode;
     }
 
+    //@OneToMany(cascade=CascadeType.ALL, mappedBy="person")
     public Set<Dog> getDogs() {
         return dogs;
     }
