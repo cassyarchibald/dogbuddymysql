@@ -13,21 +13,21 @@ public class Person {
     // must provide name, city, state, zip, about
     private String firstName;
     private String lastName;
-    private String city;
-    private String state;
-    private Integer zipCode;
-    private Integer milesWillingToDrive;
+//    private String city;
+//    private String state;
+//    private Integer zipCode;
+//    private Integer milesWillingToDrive;
     private String about;
     private String photo;
-    private Gender gender;
+//    private Gender gender;
     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Dog> dogs;
 
     // person can have many events
     // event can have many persons
     // person can have many messages
-    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<Message> messages;
+//    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    private Set<Message> messages;
 
     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<PlayDate> playdates;
@@ -35,13 +35,13 @@ public class Person {
     public Person(){}
 
     // Getters and setters
-    public Set<Message> getMessages() {
-        return messages;
-    }
-
-    public void setMessages(Set<Message> messages) {
-        this.messages = messages;
-    }
+//    public Set<Message> getMessages() {
+//        return messages;
+//    }
+//
+//    public void setMessages(Set<Message> messages) {
+//        this.messages = messages;
+//    }
 
     public Set<PlayDate> getPlaydates() {
         return playdates;
@@ -56,21 +56,21 @@ public class Person {
 
     //@OneToMany(cascade=CascadeType.ALL, mappedBy="person")
 
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public Integer getZipCode() {
-        return zipCode;
-    }
-
-    public void setZipCode(Integer zipCode) {
-        this.zipCode = zipCode;
-    }
+//    public String getState() {
+//        return state;
+//    }
+//
+//    public void setState(String state) {
+//        this.state = state;
+//    }
+//
+//    public Integer getZipCode() {
+//        return zipCode;
+//    }
+//
+//    public void setZipCode(Integer zipCode) {
+//        this.zipCode = zipCode;
+//    }
 
     //@OneToMany(cascade=CascadeType.ALL, mappedBy="person")
     public Set<Dog> getDogs() {
@@ -107,21 +107,21 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public Integer getMilesWillingToDrive() {
-        return milesWillingToDrive;
-    }
-
-    public void setMilesWillingToDrive(Integer milesWillingToDrive) {
-        this.milesWillingToDrive = milesWillingToDrive;
-    }
+//    public String getCity() {
+//        return city;
+//    }
+//
+//    public void setCity(String city) {
+//        this.city = city;
+//    }
+//
+//    public Integer getMilesWillingToDrive() {
+//        return milesWillingToDrive;
+//    }
+//
+//    public void setMilesWillingToDrive(Integer milesWillingToDrive) {
+//        this.milesWillingToDrive = milesWillingToDrive;
+//    }
 
     public String getAbout() {
         return about;
@@ -139,13 +139,13 @@ public class Person {
         this.photo = photo;
     }
 
-    public Gender getGender() {
-        return gender;
-    }
-
-    public void setGender(Gender gender) {
-        this.gender = gender;
-    }
+//    public Gender getGender() {
+//        return gender;
+//    }
+//
+//    public void setGender(Gender gender) {
+//        this.gender = gender;
+//    }
 
     @Override
     public boolean equals(Object obj) {
