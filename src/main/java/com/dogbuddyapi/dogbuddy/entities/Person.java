@@ -29,6 +29,12 @@ public class Person {
     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Message> messages;
 
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<PlayDate> playdates;
+
+    public Person(){}
+
+    // Getters and setters
     public Set<Message> getMessages() {
         return messages;
     }
@@ -37,9 +43,17 @@ public class Person {
         this.messages = messages;
     }
 
+    public Set<PlayDate> getPlaydates() {
+        return playdates;
+    }
+
+    public void setPlaydates(Set<PlayDate> playdates) {
+        this.playdates = playdates;
+    }
 
 
-    public Person(){}
+
+
     //@OneToMany(cascade=CascadeType.ALL, mappedBy="person")
 
     public String getState() {
