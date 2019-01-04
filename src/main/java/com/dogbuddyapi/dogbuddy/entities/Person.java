@@ -20,11 +20,8 @@ public class Person {
     private String about;
     private String photo;
 //    private Gender gender;
-    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Dog> dogs;
-
-    //@OneToMany(mappedBy = "person_id", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    //private Set<PlayDate> playdates;
     private String city;
     private String state;
     @Column(name = "zip_code")

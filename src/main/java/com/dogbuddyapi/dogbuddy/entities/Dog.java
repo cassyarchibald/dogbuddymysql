@@ -11,7 +11,7 @@ public class Dog {
     @Id
     @Column(name = "dog_id", nullable = false, updatable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long dog_id;
+    private Long id;
     // must at least provide a name
     @Column(nullable = false)
     private String name;
@@ -23,32 +23,28 @@ public class Dog {
     private String breed;
     @Column(name = "preferred_play_buddy")
     private String preferredPlayBuddy;
-    // dog has an owner
-    // mapping is happening from dog to person
-    // maybe move this over owner
-    // research @manytoone tutorials
-    private int person_id;
+    //private int person_id;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "owner_id")
-    private Person owner;
+    @JoinColumn(name = "person_id")
+    private Person person;
 
     // empty constructor for hibernate
     public Dog(){}
     public Person getPerson() {
-        return owner;
+        return person;
     }
 
     public void setPerson(Person person) {
-        this.owner = person;
+        this.person = person;
     }
 
 
     public Long getId() {
-        return dog_id;
+        return id;
     }
 
     public void setId(Long dog_id) {
-        this.dog_id = dog_id;
+        this.id = dog_id;
     }
 
     public String getName() {
@@ -117,12 +113,12 @@ public class Dog {
 
     @Override
     public boolean equals(Object obj) {
-        return Objects.equals(dog_id, ((Dog) obj).dog_id);
+        return Objects.equals(id, ((Dog) obj).id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(dog_id);
+        return Objects.hashCode(id);
     }
 
 }
