@@ -16,9 +16,9 @@ CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
 USE `mydb` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`person`
+-- Table `mydb`.`people`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`person` (
+CREATE TABLE IF NOT EXISTS `mydb`.`people` (
   `person_id` INT(11) NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(45) NOT NULL,
   `last_name` VARCHAR(45) NOT NULL,
@@ -27,18 +27,18 @@ CREATE TABLE IF NOT EXISTS `mydb`.`person` (
   `city` VARCHAR(45) NULL DEFAULT NULL,
   `state` VARCHAR(45) NULL DEFAULT NULL,
   `zip_code` CHAR(5) NOT NULL,
-  `playdate_id` INT(11) NOT NULL,
+  `playdate_id` INT(11) NULL,
   PRIMARY KEY (`person_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Dog`
+-- Table `mydb`.`dogs`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Dog` (
+CREATE TABLE IF NOT EXISTS `mydb`.`dogs` (
   `dog_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(255) NULL DEFAULT NULL,
+  `name` VARCHAR(255) NOT NULL,
   `age` INT(11) NULL DEFAULT NULL,
   `size` ENUM('SMALL', 'MEDIUM', 'LARGE') NULL DEFAULT NULL,
   `vaccinated` TINYINT(4) NULL DEFAULT NULL,
@@ -51,15 +51,15 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Dog` (
   INDEX `fk_Dog_person1_idx` (`person_id` ASC) VISIBLE,
   CONSTRAINT `fk_Dog_person1`
     FOREIGN KEY (`person_id`)
-    REFERENCES `mydb`.`person` (`person_id`))
+    REFERENCES `mydb`.`people` (`person_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Playdate`
+-- Table `mydb`.`playdates`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Playdate` (
+CREATE TABLE IF NOT EXISTS `mydb`.`playdates` (
   `playdate_id` INT(11) NOT NULL AUTO_INCREMENT,
   `start_time` TIME NOT NULL,
   `end_time` TIME NOT NULL,
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Playdate` (
   `state` VARCHAR(45) NOT NULL,
   `zip_code` CHAR(5) NOT NULL,
   `location` VARCHAR(45) NOT NULL,
-  `Details` TEXT NOT NULL,
+  `details` TEXT NOT NULL,
   `status` ENUM('PENDING', 'APPROVED', 'DENIED') NOT NULL DEFAULT 'PENDING',
   `requestor_id` INT(11) NOT NULL,
   `reciever_id` INT(11) NOT NULL,
@@ -77,10 +77,10 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Playdate` (
   INDEX `fk_Playdate_person2_idx` (`reciever_id` ASC) VISIBLE,
   CONSTRAINT `fk_Playdate_person1`
     FOREIGN KEY (`requestor_id`)
-    REFERENCES `mydb`.`person` (`person_id`),
+    REFERENCES `mydb`.`people` (`person_id`),
   CONSTRAINT `fk_Playdate_person2`
     FOREIGN KEY (`reciever_id`)
-    REFERENCES `mydb`.`person` (`person_id`))
+    REFERENCES `mydb`.`people` (`person_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 

@@ -6,15 +6,19 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
+import java.util.Objects;
 
 @Entity
+@Table(name = "playdates")
 public class PlayDate {
     @Id
-    @Column(nullable = false, updatable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "playdate_id", nullable = false, updatable = false)
     private Long id;
     private java.sql.Date date;
+    @Column(name = "start_time")
     private java.sql.Time startTime;
+    @Column(name = "end_time")
     private java.sql.Time endTime;
     private String city;
     private String state;
@@ -27,8 +31,6 @@ public class PlayDate {
     @JoinColumn(name = "reciever_id")
     private Person reciever;
     private Response status;
-    @CreatedDate
-    private long createdDate;
 
     // Setters and getters
 
@@ -120,11 +122,14 @@ public class PlayDate {
         this.status = status;
     }
 
-    public long getCreatedDate() {
-        return createdDate;
+    @Override
+    public boolean equals(Object obj) {
+        return Objects.equals(id, ((PlayDate) obj).id);
     }
 
-    public void setCreatedDate(long createdDate) {
-        this.createdDate = createdDate;
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
+
 }

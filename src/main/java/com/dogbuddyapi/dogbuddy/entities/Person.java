@@ -8,9 +8,11 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
+@Table(name = "people")
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "person_id")
     private Long id;
     // must provide name, city, state, zip, about
     private String firstName;
@@ -25,6 +27,7 @@ public class Person {
     //private Set<PlayDate> playdates;
     private String city;
     private String state;
+    @Column(name = "zip_code")
     private Integer zipCode;
     @OrderBy("date")
     @OneToMany(mappedBy = "reciever", cascade = CascadeType.ALL, fetch = FetchType.EAGER)

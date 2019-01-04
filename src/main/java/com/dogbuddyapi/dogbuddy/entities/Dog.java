@@ -6,11 +6,12 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@Table(name = "dogs")
 public class Dog {
     @Id
-    @Column(nullable = false, updatable = false)
+    @Column(name = "dog_id", nullable = false, updatable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long dog_id;
     // must at least provide a name
     @Column(nullable = false)
     private String name;
@@ -20,6 +21,7 @@ public class Dog {
     private String about;
     private String photo;
     private String breed;
+    @Column(name = "preferred_play_buddy")
     private String preferredPlayBuddy;
     // dog has an owner
     // mapping is happening from dog to person
@@ -29,8 +31,7 @@ public class Dog {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "owner_id")
     private Person owner;
-    //@ManyToOne
-    //@JoinColumn
+
     // empty constructor for hibernate
     public Dog(){}
     public Person getPerson() {
@@ -43,11 +44,11 @@ public class Dog {
 
 
     public Long getId() {
-        return id;
+        return dog_id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long dog_id) {
+        this.dog_id = dog_id;
     }
 
     public String getName() {
@@ -116,12 +117,12 @@ public class Dog {
 
     @Override
     public boolean equals(Object obj) {
-        return Objects.equals(id, ((Dog) obj).id);
+        return Objects.equals(dog_id, ((Dog) obj).dog_id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id);
+        return Objects.hashCode(dog_id);
     }
 
 }
