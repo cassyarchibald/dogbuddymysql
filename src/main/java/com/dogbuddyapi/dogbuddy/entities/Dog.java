@@ -9,13 +9,14 @@ import java.util.Objects;
 @Table(name = "dogs")
 public class Dog {
     @Id
-    @Column(name = "dog_id", nullable = false, updatable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "dog_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     // must at least provide a name
     @Column(nullable = false)
     private String name;
     private Integer age;
+    @Enumerated(EnumType.STRING)
     private Size size;
     private Boolean vaccinated;
     private String about;

@@ -12,8 +12,8 @@ import java.util.Objects;
 @Table(name = "playdates")
 public class PlayDate {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "playdate_id", nullable = false, updatable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "playdate_id")
     private Long id;
     private java.sql.Date date;
     @Column(name = "start_time")
@@ -30,6 +30,7 @@ public class PlayDate {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "reciever_id")
     private Person reciever;
+    @Enumerated(EnumType.STRING)
     private Response status;
 
     // Setters and getters

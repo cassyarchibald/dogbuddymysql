@@ -11,7 +11,7 @@ import java.util.Set;
 @Table(name = "people")
 public class Person {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "person_id")
     private Long id;
     // must provide name, city, state, zip, about
