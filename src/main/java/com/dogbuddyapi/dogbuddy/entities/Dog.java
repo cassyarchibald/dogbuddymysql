@@ -23,19 +23,22 @@ public class Dog {
     private String preferredPlayBuddy;
     // dog has an owner
     // mapping is happening from dog to person
+    // maybe move this over owner
+    // research @manytoone tutorials
+    private int person_id;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "person_id")
-    private Person person;
+    @JoinColumn(name = "owner_id")
+    private Person owner;
     //@ManyToOne
     //@JoinColumn
     // empty constructor for hibernate
     public Dog(){}
     public Person getPerson() {
-        return person;
+        return owner;
     }
 
     public void setPerson(Person person) {
-        this.person = person;
+        this.owner = person;
     }
 
 

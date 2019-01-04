@@ -1,5 +1,7 @@
 package com.dogbuddyapi.dogbuddy.entities;
 
+import org.aspectj.apache.bcel.util.Play;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
@@ -13,15 +15,22 @@ public class Person {
     // must provide name, city, state, zip, about
     private String firstName;
     private String lastName;
-//    private String city;
-//    private String state;
-//    private Integer zipCode;
-//    private Integer milesWillingToDrive;
     private String about;
     private String photo;
 //    private Gender gender;
-    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Dog> dogs;
+
+    //@OneToMany(mappedBy = "person_id", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    //private Set<PlayDate> playdates;
+    private String city;
+    private String state;
+    private Integer zipCode;
+    @OneToMany(mappedBy = "reciever", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<PlayDate> receivedPlaydates;
+    @OneToMany(mappedBy = "requestor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<PlayDate> requestedPlaydates;
+//    private Integer milesWillingToDrive;
 
     // person can have many events
     // event can have many persons
@@ -29,50 +38,54 @@ public class Person {
 //    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 //    private Set<Message> messages;
 
-    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<PlayDate> playdates;
-
     public Person(){}
 
-    // Getters and setters
-//    public Set<Message> getMessages() {
-//        return messages;
-//    }
-//
-//    public void setMessages(Set<Message> messages) {
-//        this.messages = messages;
+//    public Set<PlayDate> getAllPlaydates() {
+//        // Received playdates + requested playdates
+//        return this.receivedPlaydates + this.requestedPlaydates;
 //    }
 
-    public Set<PlayDate> getPlaydates() {
-        return playdates;
+    public Set<PlayDate> getReceivedPlaydates() {
+        return receivedPlaydates;
     }
 
-    public void setPlaydates(Set<PlayDate> playdates) {
-        this.playdates = playdates;
+    public void setReceivedPlaydates(Set<PlayDate> receivedPlaydates) {
+        this.receivedPlaydates = receivedPlaydates;
+    }
+
+    public Set<PlayDate> getRequestedPlaydates() {
+        return requestedPlaydates;
+    }
+
+    public void setRequestedPlaydates(Set<PlayDate> requestedPlaydates) {
+        this.requestedPlaydates = requestedPlaydates;
     }
 
 
+    public String getCity() {
+        return city;
+    }
 
+    public void setCity(String city) {
+        this.city = city;
+  }
 
-    //@OneToMany(cascade=CascadeType.ALL, mappedBy="person")
+    public String getState() {
+        return state;
+    }
 
-//    public String getState() {
-//        return state;
-//    }
-//
-//    public void setState(String state) {
-//        this.state = state;
-//    }
-//
-//    public Integer getZipCode() {
-//        return zipCode;
-//    }
-//
-//    public void setZipCode(Integer zipCode) {
-//        this.zipCode = zipCode;
-//    }
+    public void setState(String state) {
+        this.state = state;
+    }
 
-    //@OneToMany(cascade=CascadeType.ALL, mappedBy="person")
+    public Integer getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(Integer zipCode) {
+        this.zipCode = zipCode;
+    }
+
     public Set<Dog> getDogs() {
         return dogs;
     }
@@ -80,7 +93,6 @@ public class Person {
     public void setDogs(Set<Dog> dogs) {
         this.dogs = dogs;
     }
-
 
 
     public Long getId() {
@@ -107,22 +119,6 @@ public class Person {
         this.lastName = lastName;
     }
 
-//    public String getCity() {
-//        return city;
-//    }
-//
-//    public void setCity(String city) {
-//        this.city = city;
-//    }
-//
-//    public Integer getMilesWillingToDrive() {
-//        return milesWillingToDrive;
-//    }
-//
-//    public void setMilesWillingToDrive(Integer milesWillingToDrive) {
-//        this.milesWillingToDrive = milesWillingToDrive;
-//    }
-
     public String getAbout() {
         return about;
     }
@@ -138,14 +134,6 @@ public class Person {
     public void setPhoto(String photo) {
         this.photo = photo;
     }
-
-//    public Gender getGender() {
-//        return gender;
-//    }
-//
-//    public void setGender(Gender gender) {
-//        this.gender = gender;
-//    }
 
     @Override
     public boolean equals(Object obj) {

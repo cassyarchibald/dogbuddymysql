@@ -4,7 +4,8 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
+import java.sql.Time;
 
 @Entity
 public class PlayDate {
@@ -12,18 +13,19 @@ public class PlayDate {
     @Column(nullable = false, updatable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Date date;
-    private DateTimeFormat startTime;
-    private DateTimeFormat endTime;
+    private java.sql.Date date;
+    private java.sql.Time startTime;
+    private java.sql.Time endTime;
     private String city;
     private String state;
     private String zipCode;
     private String location;
-    @Column(nullable = false)
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "requestor_id")
     private Person requestor;
-    @ManyToOne
-    private Person responder;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "reciever_id")
+    private Person reciever;
     private Response status;
     @CreatedDate
     private long createdDate;
@@ -46,19 +48,19 @@ public class PlayDate {
         this.date = date;
     }
 
-    public DateTimeFormat getStartTime() {
+    public Time getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(DateTimeFormat startTime) {
+    public void setStartTime(Time startTime) {
         this.startTime = startTime;
     }
 
-    public DateTimeFormat getEndTime() {
+    public Time getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(DateTimeFormat endTime) {
+    public void setEndTime(Time endTime) {
         this.endTime = endTime;
     }
 
@@ -102,12 +104,12 @@ public class PlayDate {
         this.requestor = requestor;
     }
 
-    public Person getResponder() {
-        return responder;
+    public Person getReciever() {
+        return reciever;
     }
 
-    public void setResponder(Person responder) {
-        this.responder = responder;
+    public void setReciever(Person reciever) {
+        this.reciever = reciever;
     }
 
     public Response getStatus() {
