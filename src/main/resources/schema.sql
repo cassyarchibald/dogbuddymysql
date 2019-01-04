@@ -61,8 +61,8 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`playdates` (
   `playdate_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `start_time` TIME NOT NULL,
-  `end_time` TIME NOT NULL,
+  `start_time` DATE NOT NULL,
+  `end_time` DATE NOT NULL,
   `city` VARCHAR(45) NOT NULL,
   `state` VARCHAR(45) NOT NULL,
   `zip_code` CHAR(5) NOT NULL,

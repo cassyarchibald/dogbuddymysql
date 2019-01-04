@@ -1,5 +1,6 @@
 package com.dogbuddyapi.dogbuddy.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -15,11 +16,20 @@ public class PlayDate {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "playdate_id")
     private Long id;
-    private java.sql.Date date;
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(style = "yyy-MM-dd")
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
+    private java.util.Date date;
+    @Temporal(TemporalType.TIME)
+    @DateTimeFormat(style = "hh:mm")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "hh:mm a")
     @Column(name = "start_time")
-    private java.sql.Time startTime;
+    private java.util.Date startTime;
+    @Temporal(TemporalType.TIME)
+    @DateTimeFormat(style = "hh:mm")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "hh:mm a")
     @Column(name = "end_time")
-    private java.sql.Time endTime;
+    private java.util.Date endTime;
     private String city;
     private String state;
     private String zipCode;
@@ -43,27 +53,27 @@ public class PlayDate {
         this.id = id;
     }
 
-    public Date getDate() {
+    public java.util.Date getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(java.util.Date date) {
         this.date = date;
     }
 
-    public Time getStartTime() {
+    public java.util.Date getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Time startTime) {
+    public void setStartTime(java.util.Date startTime) {
         this.startTime = startTime;
     }
 
-    public Time getEndTime() {
+    public java.util.Date getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Time endTime) {
+    public void setEndTime(java.util.Date endTime) {
         this.endTime = endTime;
     }
 
