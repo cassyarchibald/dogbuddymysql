@@ -26,8 +26,10 @@ public class Person {
     private String city;
     private String state;
     private Integer zipCode;
+    @OrderBy("date")
     @OneToMany(mappedBy = "reciever", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<PlayDate> receivedPlaydates;
+    @OrderBy("date")
     @OneToMany(mappedBy = "requestor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<PlayDate> requestedPlaydates;
 //    private Integer milesWillingToDrive;
