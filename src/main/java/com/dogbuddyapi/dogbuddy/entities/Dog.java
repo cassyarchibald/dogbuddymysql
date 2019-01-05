@@ -44,6 +44,11 @@ public class Dog {
         return id;
     }
 
+
+    public Long getResourceId() {
+        return id;
+    }
+
     public void setId(Long dog_id) {
         this.id = dog_id;
     }

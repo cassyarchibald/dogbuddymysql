@@ -21,17 +21,18 @@ public class PlayDate {
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
     private java.util.Date date;
     @Temporal(TemporalType.TIME)
-    @DateTimeFormat(style = "hh:mm")
+    @DateTimeFormat(style = "hh:mm a")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "hh:mm a")
     @Column(name = "start_time")
     private java.util.Date startTime;
     @Temporal(TemporalType.TIME)
-    @DateTimeFormat(style = "hh:mm")
+    @DateTimeFormat(style = "hh:mm a")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "hh:mm a")
     @Column(name = "end_time")
     private java.util.Date endTime;
     private String city;
     private String state;
+    @Column(name="zip_code")
     private String zipCode;
     private String location;
     @ManyToOne(fetch = FetchType.EAGER)
@@ -46,6 +47,10 @@ public class PlayDate {
     // Setters and getters
 
     public Long getId() {
+        return id;
+    }
+
+    public Long getResourceId() {
         return id;
     }
 
