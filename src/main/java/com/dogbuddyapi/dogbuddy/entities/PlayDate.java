@@ -7,6 +7,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Objects;
 
 @Entity
@@ -17,17 +19,13 @@ public class PlayDate {
     @Column(name = "playdate_id")
     private Long id;
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(style = "yyy-MM-dd")
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
-    private java.util.Date date;
-    @Temporal(TemporalType.TIME)
-    @DateTimeFormat(style = "hh:mm a")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "hh:mm a")
+    @DateTimeFormat
+    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "hh:mm a")
     @Column(name = "start_time")
     private java.util.Date startTime;
-    @Temporal(TemporalType.TIME)
-    @DateTimeFormat(style = "hh:mm a")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "hh:mm a")
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat
+    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "hh:mm a")
     @Column(name = "end_time")
     private java.util.Date endTime;
     private String city;
@@ -44,6 +42,13 @@ public class PlayDate {
     @Enumerated(EnumType.STRING)
     private Response status;
 
+    // Might need this to format dates, we'll see
+//    private String getDateTime() {
+//        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+//        Date date = new Date();
+//        return dateFormat.format(date);
+//    }
+
     // Setters and getters
 
     public Long getId() {
@@ -56,14 +61,6 @@ public class PlayDate {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public java.util.Date getDate() {
-        return date;
-    }
-
-    public void setDate(java.util.Date date) {
-        this.date = date;
     }
 
     public java.util.Date getStartTime() {

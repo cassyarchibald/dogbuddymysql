@@ -7,7 +7,6 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema mydb
 -- -----------------------------------------------------
-DROP SCHEMA IF EXISTS `mydb` ;
 
 -- -----------------------------------------------------
 -- Schema mydb
@@ -27,9 +26,10 @@ CREATE TABLE IF NOT EXISTS `mydb`.`people` (
   `city` VARCHAR(45) NULL DEFAULT NULL,
   `state` VARCHAR(45) NULL DEFAULT NULL,
   `zip_code` CHAR(5) NOT NULL,
-  `playdate_id` INT(11) NULL,
+  `playdate_id` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`person_id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -53,6 +53,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`dogs` (
     FOREIGN KEY (`person_id`)
     REFERENCES `mydb`.`people` (`person_id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -61,8 +62,8 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`playdates` (
   `playdate_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `start_time` DATE NOT NULL,
-  `end_time` DATE NOT NULL,
+  `start_time` DATETIME NOT NULL,
+  `end_time` DATETIME NOT NULL,
   `city` VARCHAR(45) NOT NULL,
   `state` VARCHAR(45) NOT NULL,
   `zip_code` CHAR(5) NOT NULL,
@@ -71,7 +72,6 @@ CREATE TABLE IF NOT EXISTS `mydb`.`playdates` (
   `status` ENUM('PENDING', 'APPROVED', 'DENIED') NOT NULL DEFAULT 'PENDING',
   `requestor_id` INT(11) NOT NULL,
   `reciever_id` INT(11) NOT NULL,
-  `date` DATE NOT NULL,
   PRIMARY KEY (`playdate_id`),
   INDEX `fk_Playdate_person1_idx` (`requestor_id` ASC) VISIBLE,
   INDEX `fk_Playdate_person2_idx` (`reciever_id` ASC) VISIBLE,
