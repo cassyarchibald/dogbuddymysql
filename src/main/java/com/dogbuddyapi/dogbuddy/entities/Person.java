@@ -14,7 +14,7 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "person_id")
     private Long id;
-    private String uid;
+    //private String uid;
     // must provide name, city, state, zip, about
     private String firstName;
     private String lastName;
@@ -48,14 +48,14 @@ public class Person {
 //        return this.receivedPlaydates + this.requestedPlaydates;
 //    }
 
-
-    public String getUid() {
-        return uid;
-    }
-
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
+//
+//    public String getUid() {
+//        return uid;
+//    }
+//
+//    public void setUid(String uid) {
+//        this.uid = uid;
+//    }
 
     public Set<PlayDate> getReceivedPlaydates() {
         return receivedPlaydates;
