@@ -1,11 +1,9 @@
 package com.dogbuddyapi.dogbuddy.entities;
 
 public enum Size {
-    SMALL,
-    MEDIUM,
-    LARGE,
-    small,
-    medium,
-    large
+
+    Small,
+    Medium,
+    Large
 }
 
