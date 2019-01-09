@@ -28,6 +28,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`people` (
   `state` VARCHAR(45) NULL DEFAULT NULL,
   `zip_code` CHAR(5) NOT NULL,
   `playdate_id` INT(11) NULL DEFAULT NULL,
+  `uid` VARCHAR(45) NULL,
   PRIMARY KEY (`person_id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 3

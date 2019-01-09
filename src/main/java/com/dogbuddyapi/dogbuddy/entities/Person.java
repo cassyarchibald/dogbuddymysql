@@ -14,7 +14,7 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "person_id")
     private Long id;
-    //private String uid;
+    private String uid;
     // must provide name, city, state, zip, about
     private String firstName;
     private String lastName;
@@ -27,10 +27,9 @@ public class Person {
     private String state;
     @Column(name = "zip_code")
     private Integer zipCode;
-    @OrderBy("date")
     @OneToMany(mappedBy = "reciever", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<PlayDate> receivedPlaydates;
-    @OrderBy("date")
+    @OrderBy("start_time")
     @OneToMany(mappedBy = "requestor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<PlayDate> requestedPlaydates;
 //    private Integer milesWillingToDrive;
@@ -49,13 +48,13 @@ public class Person {
 //    }
 
 //
-//    public String getUid() {
-//        return uid;
-//    }
-//
-//    public void setUid(String uid) {
-//        this.uid = uid;
-//    }
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
 
     public Set<PlayDate> getReceivedPlaydates() {
         return receivedPlaydates;

@@ -11,6 +11,6 @@ import java.util.List;
 public interface PersonRepository extends CrudRepository<Person, Long> {
     List<Person> findByFirstName(@Param("first_name") String name);
     List<Person> findByLastName(@Param("last_name") String name);
-    //List<Person> findByUid(@Param("uid") String uid);
+    List<Person> findByUid(@Param("uid") String uid);
 
 }
