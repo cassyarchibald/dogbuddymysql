@@ -33,6 +33,7 @@ public class PlayDate {
     @Column(name="zip_code")
     private String zipCode;
     private String location;
+    private String details;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "requestor_id")
     private Person requestor;
@@ -50,6 +51,15 @@ public class PlayDate {
 //    }
 
     // Setters and getters
+
+
+    public String getDetails() {
+        return details;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
+    }
 
     public Long getId() {
         return id;
