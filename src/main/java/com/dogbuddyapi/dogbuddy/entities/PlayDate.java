@@ -9,23 +9,25 @@ import java.sql.Date;
 import java.sql.Time;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 import java.util.Objects;
+import java.util.TimeZone;
 
 @Entity
 @Table(name = "playdates")
 public class PlayDate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "playdate_id")
+    //@Column(name = "playdate_id")
     private Long id;
     @Temporal(TemporalType.DATE)
     @DateTimeFormat
-    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "hh:mm a")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'hh:mm")
     @Column(name = "start_time")
     private java.util.Date startTime;
     @Temporal(TemporalType.DATE)
     @DateTimeFormat
-    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "hh:mm a")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'hh:mm")
     @Column(name = "end_time")
     private java.util.Date endTime;
     private String city;
@@ -42,7 +44,10 @@ public class PlayDate {
     private Person reciever;
     @Enumerated(EnumType.STRING)
     private Response status;
-
+    @Column(name="requestor_dog_name")
+    private String requestorDogName;
+    @Column(name="recieving_dog_name")
+    private String recievingDogName;
     // Might need this to format dates, we'll see
 //    private String getDateTime() {
 //        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -52,6 +57,22 @@ public class PlayDate {
 
     // Setters and getters
 
+
+    public String getRequestorDogName() {
+        return requestorDogName;
+    }
+
+    public void setRequestorDogName(String requestorDogName) {
+        this.requestorDogName = requestorDogName;
+    }
+
+    public String getRecievingDogName() {
+        return recievingDogName;
+    }
+
+    public void setRecievingDogName(String recievingDogName) {
+        this.recievingDogName = recievingDogName;
+    }
 
     public String getDetails() {
         return details;

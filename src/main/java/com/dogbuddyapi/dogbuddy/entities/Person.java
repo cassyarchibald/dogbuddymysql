@@ -28,7 +28,7 @@ public class Person {
     @Column(name = "zip_code")
     private Integer zipCode;
     @OneToMany(mappedBy = "reciever", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<PlayDate> receivedPlaydates;
+    private Set<PlayDate> recievedPlaydates;
     @OrderBy("start_time")
     @OneToMany(mappedBy = "requestor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<PlayDate> requestedPlaydates;
@@ -57,11 +57,11 @@ public class Person {
     }
 
     public Set<PlayDate> getReceivedPlaydates() {
-        return receivedPlaydates;
+        return recievedPlaydates;
     }
 
     public void setReceivedPlaydates(Set<PlayDate> receivedPlaydates) {
-        this.receivedPlaydates = receivedPlaydates;
+        this.recievedPlaydates = receivedPlaydates;
     }
 
     public Set<PlayDate> getRequestedPlaydates() {

@@ -9,7 +9,7 @@ import java.util.Objects;
 @Table(name = "dogs")
 public class Dog {
     @Id
-    @Column(name = "dog_id")
+//    @Column(name = "dog_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     // must at least provide a name

@@ -1,5 +1,6 @@
 package com.dogbuddyapi.dogbuddy.repos;
 
+import com.dogbuddyapi.dogbuddy.entities.Person;
 import com.dogbuddyapi.dogbuddy.entities.PlayDate;
 import com.dogbuddyapi.dogbuddy.entities.Response;
 import org.aspectj.apache.bcel.util.Play;
@@ -11,5 +12,6 @@ import java.util.List;
 
 public interface PlayDateRepository extends CrudRepository<PlayDate, Long> {
     List<PlayDate> findByStatus(@Param("status")Response status);
+    List<PlayDate> findByReciever(@Param("reciever") Person Long);
 
 }

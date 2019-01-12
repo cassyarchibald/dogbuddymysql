@@ -7,7 +7,6 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema mydb
 -- -----------------------------------------------------
-DROP SCHEMA IF EXISTS `mydb` ;
 
 -- -----------------------------------------------------
 -- Schema mydb
@@ -27,11 +26,10 @@ CREATE TABLE IF NOT EXISTS `mydb`.`people` (
   `city` VARCHAR(45) NULL DEFAULT NULL,
   `state` VARCHAR(45) NULL DEFAULT NULL,
   `zip_code` CHAR(5) NOT NULL,
-  `playdate_id` INT(11) NULL DEFAULT NULL,
-  `uid` VARCHAR(45) NULL,
+  `uid` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`person_id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 3
+AUTO_INCREMENT = 20
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -39,7 +37,7 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `mydb`.`dogs`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`dogs` (
-  `dog_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL,
   `age` INT(11) NULL DEFAULT NULL,
   `size` ENUM('Small', 'Medium', 'Large') NULL DEFAULT NULL,
@@ -49,13 +47,13 @@ CREATE TABLE IF NOT EXISTS `mydb`.`dogs` (
   `breed` VARCHAR(45) NULL DEFAULT NULL,
   `preferred_play_buddy` TEXT NULL DEFAULT NULL,
   `person_id` INT(11) NOT NULL,
-  PRIMARY KEY (`dog_id`),
+  PRIMARY KEY (`id`),
   INDEX `fk_Dog_person1_idx` (`person_id` ASC) VISIBLE,
   CONSTRAINT `fk_Dog_person1`
     FOREIGN KEY (`person_id`)
     REFERENCES `mydb`.`people` (`person_id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 3
+AUTO_INCREMENT = 14
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -63,7 +61,7 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `mydb`.`playdates`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`playdates` (
-  `playdate_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `start_time` DATETIME NOT NULL,
   `end_time` DATETIME NOT NULL,
   `city` VARCHAR(45) NOT NULL,
@@ -74,7 +72,9 @@ CREATE TABLE IF NOT EXISTS `mydb`.`playdates` (
   `status` ENUM('Pending', 'Approved', 'Denied') NOT NULL DEFAULT 'Pending',
   `requestor_id` INT(11) NOT NULL,
   `reciever_id` INT(11) NOT NULL,
-  PRIMARY KEY (`playdate_id`),
+  `requestor_dog_name` VARCHAR(45) NOT NULL,
+  `recieving_dog_name` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`),
   INDEX `fk_Playdate_person1_idx` (`requestor_id` ASC) VISIBLE,
   INDEX `fk_Playdate_person2_idx` (`reciever_id` ASC) VISIBLE,
   CONSTRAINT `fk_Playdate_person1`
@@ -84,6 +84,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`playdates` (
     FOREIGN KEY (`reciever_id`)
     REFERENCES `mydb`.`people` (`person_id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 8
 DEFAULT CHARACTER SET = utf8;
 
 

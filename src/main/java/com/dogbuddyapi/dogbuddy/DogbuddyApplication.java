@@ -6,9 +6,11 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.convert.Jsr310Converters;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import java.time.LocalDateTime;
 
 @ComponentScan
 @EnableAutoConfiguration
+
 @SpringBootApplication
 @EntityScan(basePackageClasses = {DogbuddyApplication.class, Jsr310Converters.class})
 @CrossOrigin(origins = "http://localhost:3000")
