@@ -1,5 +1,6 @@
 package com.dogbuddyapi.dogbuddy.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.rest.core.annotation.RestResource;
 
 import javax.persistence.*;
@@ -7,6 +8,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "dogs")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Dog {
     @Id
 //    @Column(name = "dog_id")

@@ -21,16 +21,16 @@ public class Person {
     private String about;
     private String photo;
 //    private Gender gender;
-    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "person", fetch = FetchType.LAZY, orphanRemoval = true)
     private Set<Dog> dogs;
     private String city;
     private String state;
     @Column(name = "zip_code")
     private Integer zipCode;
-    @OneToMany(mappedBy = "reciever")
+    @OneToMany(mappedBy = "reciever", orphanRemoval = true)
     private Set<PlayDate> recievedPlaydates;
     @OrderBy("start_time")
-    @OneToMany(mappedBy = "requestor")
+    @OneToMany(mappedBy = "requestor", orphanRemoval = true)
     private Set<PlayDate> requestedPlaydates;
 //    private Integer milesWillingToDrive;
 
