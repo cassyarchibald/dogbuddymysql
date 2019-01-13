@@ -36,10 +36,10 @@ public class PlayDate {
     private String zipCode;
     private String location;
     private String details;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "requestor_id")
     private Person requestor;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "reciever_id")
     private Person reciever;
     @Enumerated(EnumType.STRING)

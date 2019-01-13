@@ -27,10 +27,10 @@ public class Person {
     private String state;
     @Column(name = "zip_code")
     private Integer zipCode;
-    @OneToMany(mappedBy = "reciever", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "reciever")
     private Set<PlayDate> recievedPlaydates;
     @OrderBy("start_time")
-    @OneToMany(mappedBy = "requestor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "requestor")
     private Set<PlayDate> requestedPlaydates;
 //    private Integer milesWillingToDrive;
 
