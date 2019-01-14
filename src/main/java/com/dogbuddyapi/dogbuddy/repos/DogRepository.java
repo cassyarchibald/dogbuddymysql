@@ -11,6 +11,7 @@ import java.util.List;
 public interface DogRepository extends CrudRepository<Dog, Long> {
     List<Dog> findByName(@Param("name") String name);
     List<Dog> findByBreed(@Param("breed") String breed);
+    List<Dog> findByPerson_ZipCode(@Param("zipCode") Integer zipCode);
 
 
 }
