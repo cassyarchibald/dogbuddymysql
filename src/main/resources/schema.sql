@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`people` (
   `uid` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`person_id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 20
+AUTO_INCREMENT = 24
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -47,13 +47,14 @@ CREATE TABLE IF NOT EXISTS `mydb`.`dogs` (
   `breed` VARCHAR(45) NULL DEFAULT NULL,
   `preferred_play_buddy` TEXT NULL DEFAULT NULL,
   `person_id` INT(11) NOT NULL,
+  `gender` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_Dog_person1_idx` (`person_id` ASC) VISIBLE,
   CONSTRAINT `fk_Dog_person1`
     FOREIGN KEY (`person_id`)
     REFERENCES `mydb`.`people` (`person_id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 14
+AUTO_INCREMENT = 28
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -84,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`playdates` (
     FOREIGN KEY (`reciever_id`)
     REFERENCES `mydb`.`people` (`person_id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 8
+AUTO_INCREMENT = 15
 DEFAULT CHARACTER SET = utf8;
 
 

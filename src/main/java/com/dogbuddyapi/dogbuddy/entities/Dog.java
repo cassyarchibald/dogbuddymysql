@@ -20,6 +20,7 @@ public class Dog {
     private Integer age;
     @Enumerated(EnumType.STRING)
     private Size size;
+    private String gender;
     private Boolean vaccinated;
     private String about;
     private String photo;
@@ -65,6 +66,14 @@ public class Dog {
 
     public Integer getAge() {
         return age;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public void setAge(Integer age) {
