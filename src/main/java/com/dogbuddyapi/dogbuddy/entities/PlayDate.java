@@ -10,6 +10,7 @@ import java.sql.Date;
 import java.sql.Time;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.TimeZone;
@@ -24,14 +25,14 @@ public class PlayDate {
     private Long id;
     //@Temporal(TemporalType.DATE)
     @DateTimeFormat
-    @JsonFormat(pattern = "yyyy-MM-dd'T'hh:mm")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     @Column(name = "start_time")
-    private java.sql.Date startTime;
+    private LocalDateTime startTime;
     //@Temporal(TemporalType.DATE)
     @DateTimeFormat
-    @JsonFormat(pattern = "yyyy-MM-dd'T'hh:mm")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     @Column(name = "end_time")
-    private java.sql.Date endTime;
+    private LocalDateTime endTime;
     private String city;
     private String state;
     @Column(name="zip_code")
@@ -96,19 +97,19 @@ public class PlayDate {
         this.id = id;
     }
 
-    public java.sql.Date getStartTime() {
+    public LocalDateTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(java.sql.Date startTime) {
+    public void setStartTime(LocalDateTime startTime) {
         this.startTime = startTime;
     }
 
-    public java.sql.Date getEndTime() {
+    public LocalDateTime getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(java.sql.Date endTime) {
+    public void setEndTime(LocalDateTime endTime) {
         this.endTime = endTime;
     }
 
