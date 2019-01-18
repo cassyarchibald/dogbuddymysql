@@ -22,16 +22,16 @@ public class PlayDate {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     //@Column(name = "playdate_id")
     private Long id;
-    @Temporal(TemporalType.DATE)
+    //@Temporal(TemporalType.DATE)
     @DateTimeFormat
     @JsonFormat(pattern = "yyyy-MM-dd'T'hh:mm")
     @Column(name = "start_time")
-    private java.util.Date startTime;
-    @Temporal(TemporalType.DATE)
+    private java.sql.Date startTime;
+    //@Temporal(TemporalType.DATE)
     @DateTimeFormat
     @JsonFormat(pattern = "yyyy-MM-dd'T'hh:mm")
     @Column(name = "end_time")
-    private java.util.Date endTime;
+    private java.sql.Date endTime;
     private String city;
     private String state;
     @Column(name="zip_code")
@@ -96,19 +96,19 @@ public class PlayDate {
         this.id = id;
     }
 
-    public java.util.Date getStartTime() {
+    public java.sql.Date getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(java.util.Date startTime) {
+    public void setStartTime(java.sql.Date startTime) {
         this.startTime = startTime;
     }
 
-    public java.util.Date getEndTime() {
+    public java.sql.Date getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(java.util.Date endTime) {
+    public void setEndTime(java.sql.Date endTime) {
         this.endTime = endTime;
     }
 
